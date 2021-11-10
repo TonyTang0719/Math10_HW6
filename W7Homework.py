@@ -6,11 +6,11 @@ from sklearn.datasets import make_blobs
 from sklearn.cluster import KMeans
 
 st.title("How to use K-Means")
-d= st.slider("choose the number of iterations",1,1000,1,1)
+it= st.slider("choose the number of iterations",1,1000,1,1)
 X, _ = make_blobs(n_samples=1000, centers=5, n_features=2, random_state = 1)
 df = pd.DataFrame(X, columns = list("ab"))
 starting_points = np.array([[0,0],[-2,0],[-4,0],[0,2],[0,4]])
-kmeans = KMeans(n_clusters = 5, max_iter=d, init=starting_points, n_init = 1)
+kmeans = KMeans(n_clusters = 5, max_iter=it, init=starting_points, n_init = 1)
 kmeans.fit(X);
 df["c"] = kmeans.predict(X)
 chart1 = alt.Chart(df).mark_circle().encode(
